@@ -9,65 +9,67 @@ import { HomeIcon } from '@heroicons/react/20/solid';
 export default function Header() {
   const router = useRouter();
   return (
-    // left////
-    <div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
-      <div className="">
-        <div
-          className="logo text-3xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative hidden md:inline-grid"
-          onClick={() => router.push('/')}
-        >
-          Man Of God
-        </div>
-        <div
-          className="logo text-1xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative sm:inline-grid md:hidden"
-          onClick={() => router.push('/')}
-        >
-          Man Of God
-        </div>
-        {/* <Image
+    <div className="shadow-sm border-b sticky top-0 bg-white z-30">
+      {/* left side */}
+      <div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
+        <div className="">
+          <div
+            className="logo pt-6 text-3xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative hidden md:inline-grid"
+            onClick={() => router.push('/')}
+          >
+            Man Of God
+          </div>
+          <div
+            className="logo pt-7 text-1xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative sm:inline-grid md:hidden"
+            onClick={() => router.push('/')}
+          >
+            Man Of God
+          </div>
+          {/* <Image
             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.brandinglosangeles.com%2Fwp-content%2Fuploads%2FInstagram_logo.svg.png&f=1&nofb=1"
             layout="fill"
             className="object-contain"
             onClick={() => router.push('/')}
           /> */}
-      </div>
-
-      {/*  // middle//// */}
-      <div className="relative mt-1">
-        <div className="absolute top-2 left-2">
-          <MagnifyingGlassIcon className="h-5 text-gray-500" />
         </div>
-        <input
-          type="text"
-          placeholder="Search"
-          className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
-        />
-      </div>
 
-      {/* // right///  */}
+        {/*  // middle//// */}
+        <div className="relative mt-1">
+          <div className="absolute top-2 left-2">
+            <MagnifyingGlassIcon className="h-5 text-gray-500" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
+          />
+        </div>
 
-      <div className="flex space-x-4 items-center">
-        <HomeIcon
-          className=" hidden md:inline-flex h-6
+        {/* // right///  */}
+
+        <div className="flex space-x-4 items-center">
+          <HomeIcon
+            className=" hidden md:inline-flex h-6
           cursor-pointer
           hover:scale-125
           transition-transform
           duration-200
           ease-out"
-        />
-        <PlusCircleIcon
-          className="  h-6
+          />
+          <PlusCircleIcon
+            className="  h-6
           cursor-pointer
           hover:scale-125
           transition-transform
           duration-200
           ease-out"
-        />
-        <img
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
-          alt="helmet of salvation"
-          className="h-10 rounded-full cursor-pointer"
-        />
+          />
+          <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
+            alt="helmet of salvation"
+            className="h-10 rounded-full cursor-pointer"
+          />
+        </div>
       </div>
     </div>
   );

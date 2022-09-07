@@ -14,7 +14,7 @@ export default function Home() {
 
       {/* Header */}
       <Header />
-
+      <h1>this is the body</h1>
       {/*Feed */}
 
       {/* Modal */}
