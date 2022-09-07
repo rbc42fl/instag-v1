@@ -6,6 +6,7 @@ import {
   PlusCircleIcon,
 } from '@heroicons/react/24/outline';
 import { HomeIcon } from '@heroicons/react/20/solid';
+import styles from '../styles/App.module.css';
 export default function Header() {
   const router = useRouter();
   return (
