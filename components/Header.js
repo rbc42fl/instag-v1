@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/router';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import {
+  MagnifyingGlassIcon,
+  PlusCircleIcon,
+} from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/20/solid';
 export default function Header() {
   const router = useRouter();
   return (
     // left////
-    <div className="flex items-center justify-between max-w-6xl">
+    <div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
       <div className="">
         <div
           className="logo text-3xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative hidden md:inline-grid"
@@ -42,7 +46,29 @@ export default function Header() {
 
       {/* // right///  */}
 
-      <h1>right side</h1>
+      <div className="flex space-x-4 items-center">
+        <HomeIcon
+          className=" hidden md:inline-flex h-6
+          cursor-pointer
+          hover:scale-125
+          transition-transform
+          duration-200
+          ease-out"
+        />
+        <PlusCircleIcon
+          className="  h-6
+          cursor-pointer
+          hover:scale-125
+          transition-transform
+          duration-200
+          ease-out"
+        />
+        <img
+          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
+          alt="helmet of salvation"
+          className="h-10 rounded-full cursor-pointer"
+        />
+      </div>
     </div>
   );
 }
