@@ -1,4 +1,9 @@
-import { PlusIcon } from '@heroicons/react/24/outline';
+import {
+  PlusIcon,
+  HeartIcon,
+  ChatBubbleBottomCenterTextIcon,
+  BookmarkIcon,
+} from '@heroicons/react/24/outline';
 
 export default function Post({ img, userImg, caption, username, id }) {
   return (
@@ -19,6 +24,14 @@ export default function Post({ img, userImg, caption, username, id }) {
       </div>
       {/* post image */}
       <img className="object-cover max-w-full" src={img} alt="img" />
+      {/*Post  Buttons  */}
+      <div className="flex justify-between px-4 pt-4">
+        <div className="flex space-x-4">
+          <HeartIcon className="btn" />
+          <ChatBubbleBottomCenterTextIcon className="btn" />
+        </div>
+        <BookmarkIcon className="btn" />
+      </div>
     </div>
   );
 }
