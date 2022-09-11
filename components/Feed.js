@@ -1,6 +1,7 @@
 import Miniprofile from './Miniprofile';
 import Posts from './Posts';
 import Stories from './Stories';
+import Suggestions from './Suggestions';
 
 export default function Feed() {
   return (
@@ -17,6 +18,7 @@ export default function Feed() {
           {/* Mimi Profiles */}
           <Miniprofile />
           {/* Suggestions */}
+          <Suggestions />
         </div>
       </section>
     </main>
