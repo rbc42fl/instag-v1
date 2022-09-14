@@ -1,17 +1,20 @@
 // import Image from 'next/image';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import React from 'react';
+import { useRecoilState } from 'recoil';
+import { modalState } from '../atom/modalAtom';
 import { useRouter } from 'next/router';
 import {
   MagnifyingGlassIcon,
   PlusCircleIcon,
 } from '@heroicons/react/24/outline';
+
 import { HomeIcon } from '@heroicons/react/20/solid';
+
 // import styles from '../styles/App.module.css';
 
 export default function Header() {
   const { data: session } = useSession();
-  console.log(session);
+  const [open, setOpen] = useRecoilState(modalState);
   const router = useRouter();
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white z-30">
@@ -64,7 +67,8 @@ export default function Header() {
           {session ? (
             <>
               <PlusCircleIcon
-                className="  h-6
+                onclick={() => setOpen(true)}
+                className="h-6
           cursor-pointer
           hover:scale-125
           transition-transform

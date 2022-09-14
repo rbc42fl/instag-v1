@@ -6,7 +6,7 @@ export default function Miniprofile() {
     <div className="flex items-center justify-between mt-14 ml-10">
       <img
         className="h-16 rounded-full border p-[2px]"
-        // src={session?.user.image}
+        src={session?.user.image}
       />
       <div className="flex-1 ml-4">
         <h2 className="font-bold">{session?.user.username}</h2>
