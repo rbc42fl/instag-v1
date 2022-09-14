@@ -1,4 +1,5 @@
-import Image from 'next/image';
+// import Image from 'next/image';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import React from 'react';
 import { useRouter } from 'next/router';
 import {
@@ -6,8 +7,11 @@ import {
   PlusCircleIcon,
 } from '@heroicons/react/24/outline';
 import { HomeIcon } from '@heroicons/react/20/solid';
-import styles from '../styles/App.module.css';
+// import styles from '../styles/App.module.css';
+
 export default function Header() {
+  const { data: session } = useSession();
+  console.log(session);
   const router = useRouter();
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white z-30">
@@ -57,19 +61,28 @@ export default function Header() {
           duration-200
           ease-out"
           />
-          <PlusCircleIcon
-            className="  h-6
+          {session ? (
+            <>
+              <PlusCircleIcon
+                className="  h-6
           cursor-pointer
           hover:scale-125
           transition-transform
           duration-200
           ease-out"
-          />
-          <img
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
-            alt="helmet of salvation"
-            className="h-10 rounded-full cursor-pointer"
-          />
+              />
+
+              <img
+                onClick={signOut}
+                src={session.user.image}
+                // src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
+                alt="oops-no-image"
+                className="h-10 rounded-full cursor-pointer"
+              />
+            </>
+          ) : (
+            <button onClick={signIn}>Sign In</button>
+          )}
         </div>
       </div>
     </div>
