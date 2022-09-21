@@ -1,3 +1,5 @@
+import { useRecoilState } from 'recoil';
+//import { userState } from '../atom/userAtom';
 import { useSession } from 'next-auth/react';
 import Miniprofile from './Miniprofile';
 import Posts from './Posts';

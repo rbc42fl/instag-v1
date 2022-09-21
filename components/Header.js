@@ -67,7 +67,7 @@ export default function Header() {
           {session ? (
             <>
               <PlusCircleIcon
-                onclick={() => setOpen(true)}
+                onClick={() => setOpen(true)}
                 className="h-6
           cursor-pointer
           hover:scale-125
