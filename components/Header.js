@@ -57,6 +57,7 @@ export default function Header() {
 
         <div className="flex space-x-4 items-center">
           <HomeIcon
+            onClick={() => router.push('/')}
             className=" hidden md:inline-flex h-6
           cursor-pointer
           hover:scale-125
