@@ -4,7 +4,9 @@ import {
   ChatBubbleBottomCenterTextIcon,
   BookmarkIcon,
   FaceSmileIcon,
+  EmojiHappyIcon,
 } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartIconFilled } from '@heroicons/react/20/solid';
 import {
   addDoc,
   collection,
@@ -14,6 +16,7 @@ import {
   orderBy,
   deleteDoc,
   setDoc,
+  doc,
 } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import Moment from 'react-moment';
@@ -23,6 +26,11 @@ export default function Post({ img, userImg, caption, username, id }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
+  //const [currentUser] = useRecoilState(userState);
+
+  ///////////////// USE EFFECT //////////////////////////
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -35,18 +43,46 @@ export default function Post({ img, userImg, caption, username, id }) {
       }
     );
   }, [db, id]);
+  //////////////// USE EFFECT ///////////////////
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, 'posts', id, 'likes'),
+      (snapshot) => setLikes(snapshot.docs)
+    );
+  }, [db]);
+
+  useEffect(() => {
+    setHasLiked(
+      likes.findIndex((like) => like.id === session?.user.uid) !== -1
+    );
+  }, [likes]);
+
+  //////////// ASYNC FUNCTION //////////////
+
+  async function likePost() {
+    if (hasLiked) {
+      await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
+    } else {
+      await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
+        username: session.user.username,
+      });
+    }
+  }
+  ////////// ASYNC FUNCTION //////////////
   async function sendComment(event) {
     event.preventDefault();
     const commentToSend = comment;
     setComment('');
     await addDoc(collection(db, 'posts', id, 'comments'), {
       comment: commentToSend,
-      username: session.user.username,
-      userImage: session.user.image,
+      username: session?.user.username,
+      userImage: session?.user.image,
       timestamp: serverTimestamp(),
     });
   }
+  /////////////////////////////////////////////
+  //////////////////////////////////////////////
   return (
     <div className="bg-white my-7 border rounded-md">
       {/* Post Header */}
@@ -63,22 +99,30 @@ export default function Post({ img, userImg, caption, username, id }) {
         <PlusIcon className="h-5" />
         <p className="mr-4">{caption}</p>
       </div>
-      {/* post image */}
+      {/* post image //////////////////////////////*/}
 
       <img className="object-cover max-w-full" src={img} alt="img" />
 
-      {/*Post  Buttons  */}
+      {/*Post  Buttons  ///////////////////////////*/}
       {session && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex space-x-4">
-            <HeartIcon className="btn" />
+            {hasLiked ? (
+              <HeartIconFilled
+                onClick={likePost}
+                className="text-red-400 btn"
+              />
+            ) : (
+              <HeartIcon onClick={likePost} className="btn" />
+            )}
+
             <ChatBubbleBottomCenterTextIcon className="btn" />
           </div>
           <BookmarkIcon className="btn" />
         </div>
       )}
 
-      {/* Post Comments section */}
+      {/* Post Comments section /////////////////////////*/}
 
       <p className="p-5 truncate">
         <span className="font-bold mr-2">{username}</span>
@@ -92,17 +136,17 @@ export default function Post({ img, userImg, caption, username, id }) {
               <img
                 className="h-7  rounded-full object-cover"
                 src={comment.data().userImage}
-                alt="user-image"
+                alt="c-image"
               />
               <p className="font-semibold">{comment.data().username}</p>
-              <p className="flex-1">{comment.data().comment}</p>
+              <p className="flex-1 truncate">{comment.data().comment}</p>
               <Moment fromNow>{comment.data().timestamp?.toDate()}</Moment>
             </div>
           ))}
         </div>
       )}
 
-      {/* Post input box */}
+      {/* Post input box //////////////////////////////*/}
       {session && (
         <form className="flex items-center p-4">
           <FaceSmileIcon className="h-7" />
