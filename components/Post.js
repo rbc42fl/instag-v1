@@ -62,9 +62,9 @@ export default function Post({ img, userImg, caption, username, id }) {
 
   async function likePost() {
     if (hasLiked) {
-      await deleteDoc(doc(db, 'posts', id, 'likes', session.user.uid));
+      await deleteDoc(doc(db, 'posts', id, 'likes', session?.user.uid));
     } else {
-      await setDoc(doc(db, 'posts', id, 'likes', session.user.uid), {
+      await setDoc(doc(db, 'posts', id, 'likes', session?.user.uid), {
         username: session.user.username,
       });
     }
