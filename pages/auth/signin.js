@@ -8,6 +8,7 @@ export default function Signin({ providers }) {
   return (
     <>
       <Header />
+
       <div className="flex justify-center space-x-7 mt-20">
         <div className="hidden md:inline-flex rotate-12 mr-12">
           <Image
@@ -29,11 +30,8 @@ export default function Signin({ providers }) {
                   width={100}
                   height={100}
                 />
-                <h2 className="font-bold ml-16">My verse app</h2>
+                <h2 className="font-bold ml-8 mb-5">My verse app</h2>
 
-                <p className="text-sm italic my-10 text-center">
-                  This app is created for practice purposes.
-                </p>
                 <button
                   onClick={() => signIn(provider.id, { callbackUrl: '/' })}
                   className="bg-red-400 rounded-lg p-3 text-white hover:bg-red-500"

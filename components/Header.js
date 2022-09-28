@@ -27,12 +27,7 @@ export default function Header() {
           >
             Man Of God
           </div>
-          <div
-            className="logo pt-7 text-1xl text-yellow-700 font-bold cursor-pointer h-24 w-60 relative sm:inline-grid md:hidden"
-            onClick={() => router.push('/')}
-          >
-            Man Of God
-          </div>
+
           {/* <Image
             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.brandinglosangeles.com%2Fwp-content%2Fuploads%2FInstagram_logo.svg.png&f=1&nofb=1"
             layout="fill"
@@ -43,14 +38,17 @@ export default function Header() {
 
         {/*  // middle//// */}
         <div className="relative mt-1">
-          <div className="absolute top-2 left-2">
+          <h2 className="font-bold text-lg break-normal text-center">
+            The Word of God is living and Breathing
+          </h2>
+          {/* <div className="absolute top-2 left-2">
             <MagnifyingGlassIcon className="h-5 text-gray-500" />
           </div>
           <input
             type="text"
             placeholder="Search"
             className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
-          />
+          /> */}
         </div>
 
         {/* // right///  */}
@@ -76,14 +74,20 @@ export default function Header() {
           duration-200
           ease-out"
               />
-
-              <img
+              <p
                 onClick={signOut}
-                src={session.user.image}
-                // src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
-                alt="oops-no-image"
+                className="font-bold h-10  cursor-pointer sm:pt-2 break-normal"
+              >
+                sign out
+              </p>
+              {/* <img
+               
+                // src={session?.user.image}
+                // src="
+                https:alt="image" //external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.QhMtcoJUhbSQUSSG4fVB3wAAAA%26pid%3DApi&f=1"
                 className="h-10 rounded-full cursor-pointer"
-              />
+              />{' '}
+              */}
             </>
           ) : (
             <button onClick={signIn}>Sign In</button>

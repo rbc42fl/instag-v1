@@ -1,5 +1,7 @@
 import {
-  PlusIcon,
+  //ArrowLongRightIcon,
+  ChevronDoubleRightIcon,
+  //PlusIcon,
   HeartIcon,
   ChatBubbleBottomCenterTextIcon,
   BookmarkIcon,
@@ -74,10 +76,11 @@ export default function Post({ img, userImg, caption, username, id }) {
     event.preventDefault();
     const commentToSend = comment;
     setComment('');
+
     await addDoc(collection(db, 'posts', id, 'comments'), {
       comment: commentToSend,
       username: session?.user.username,
-      userImage: session?.user.image,
+      userImg: session?.user.image,
       timestamp: serverTimestamp(),
     });
   }
@@ -94,9 +97,8 @@ export default function Post({ img, userImg, caption, username, id }) {
           alt={username}
         />
         <p className="font-bold flex-1 ">{username}</p>
-        <PlusIcon className="h-5" />
-        <PlusIcon className="h-5" />
-        <PlusIcon className="h-5" />
+        <ChevronDoubleRightIcon className="h-5" />
+
         <p className="mr-4">{caption}</p>
       </div>
       {/* post image //////////////////////////////*/}
@@ -116,9 +118,9 @@ export default function Post({ img, userImg, caption, username, id }) {
               <HeartIcon onClick={likePost} className="btn" />
             )}
 
-            <ChatBubbleBottomCenterTextIcon className="btn" />
+            {/* <ChatBubbleBottomCenterTextIcon className="btn" /> */}
           </div>
-          <BookmarkIcon className="btn" />
+          {/* <BookmarkIcon className="btn" /> */}
         </div>
       )}
 
@@ -141,7 +143,7 @@ export default function Post({ img, userImg, caption, username, id }) {
             >
               <img
                 className="h-7  rounded-full object-cover"
-                src={comment.data().userImage}
+                src={comment.data().userImg}
                 alt="c-image"
               />
               <p className="font-semibold">{comment.data().username}</p>
